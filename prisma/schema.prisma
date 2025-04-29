@@ -1,0 +1,151 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model User {
+  id           String        @id @unique
+  email        String        @unique
+  name         String?
+  role         UserRole      @default(STAFF)
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+  menuItems    MenuItem[]
+  orders       Order[]
+  reservations Reservation[]
+  restaurants  Restaurant[]
+}
+
+model Restaurant {
+  id             String         @id @default(cuid())
+  name           String
+  description    String?
+  address        String
+  phone          String
+  email          String?
+  ownerId        String
+  isActive       Boolean        @default(true)
+  createdAt      DateTime       @default(now())
+  updatedAt      DateTime       @updatedAt
+  menuCategories MenuCategory[]
+  menuItems      MenuItem[]
+  orders         Order[]
+  reservations   Reservation[]
+  owner          User           @relation(fields: [ownerId], references: [id])
+  tables         Table[]
+}
+
+model MenuCategory {
+  id           String     @id @default(cuid())
+  name         String
+  description  String?
+  restaurantId String
+  isActive     Boolean    @default(true)
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+  restaurant   Restaurant @relation(fields: [restaurantId], references: [id])
+  menuItems    MenuItem[]
+}
+
+model MenuItem {
+  id           String       @id @default(cuid())
+  name         String
+  description  String?
+  price        Float
+  imageUrl     String?
+  restaurantId String
+  categoryId   String
+  creatorId    String
+  isAvailable  Boolean      @default(true)
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+  category     MenuCategory @relation(fields: [categoryId], references: [id])
+  creator      User         @relation(fields: [creatorId], references: [id])
+  restaurant   Restaurant   @relation(fields: [restaurantId], references: [id])
+  orderItems   OrderItem[]
+}
+
+model Table {
+  id           String        @id @default(cuid())
+  number       Int
+  capacity     Int
+  status       TableStatus   @default(AVAILABLE)
+  restaurantId String
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+  reservations Reservation[]
+  restaurant   Restaurant    @relation(fields: [restaurantId], references: [id])
+}
+
+model Reservation {
+  id           String            @id @default(cuid())
+  date         DateTime
+  startTime    DateTime
+  endTime      DateTime?
+  guestCount   Int
+  restaurantId String
+  tableId      String
+  customerId   String
+  status       ReservationStatus @default(PENDING)
+  createdAt    DateTime          @default(now())
+  updatedAt    DateTime          @updatedAt
+  customer     User              @relation(fields: [customerId], references: [id])
+  restaurant   Restaurant        @relation(fields: [restaurantId], references: [id])
+  table        Table             @relation(fields: [tableId], references: [id])
+}
+
+model Order {
+  id           String      @id @default(cuid())
+  totalAmount  Float
+  status       OrderStatus @default(PENDING)
+  restaurantId String
+  customerId   String
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @updatedAt
+  customer     User        @relation(fields: [customerId], references: [id])
+  restaurant   Restaurant  @relation(fields: [restaurantId], references: [id])
+  orderItems   OrderItem[]
+}
+
+model OrderItem {
+  id         String   @id @default(cuid())
+  quantity   Int
+  orderId    String
+  menuItemId String
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  menuItem   MenuItem @relation(fields: [menuItemId], references: [id])
+  order      Order    @relation(fields: [orderId], references: [id])
+}
+
+enum UserRole {
+  ADMIN
+  MANAGER
+  STAFF
+  CUSTOMER
+}
+
+enum TableStatus {
+  AVAILABLE
+  RESERVED
+  OCCUPIED
+}
+
+enum ReservationStatus {
+  PENDING
+  CONFIRMED
+  CANCELLED
+  COMPLETED
+}
+
+enum OrderStatus {
+  PENDING
+  PROCESSING
+  COMPLETED
+  CANCELLED
+}
