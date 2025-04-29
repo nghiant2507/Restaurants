@@ -43,7 +43,7 @@ const listRestaurants = async (req: NextRequest) => {
 
 const createRestaurant = async (
   req: NextRequest,
-  context: { session: any },
+  context: { session: any }, //eslint-disable-line
 ) => {
   try {
     const body = await req.json();

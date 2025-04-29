@@ -2,7 +2,7 @@ import { usePathname, useRouter } from 'next/navigation';
 import { useCallback, useEffect, useState } from 'react';
 import { toast } from 'sonner';
 
-import { createClient } from '~/lib/supabase/client';
+import { createClientBrowser } from '~/lib/supabase/client';
 
 import { useStore } from './use-store';
 
@@ -21,7 +21,7 @@ export const useAuth = () => {
   const [isLoading, setIsLoading] = useStore<boolean>('isLoading');
   const [isSubmit, setIsSubmit] = useState<boolean>(false);
   const [user, setUser] = useStore<AuthUser | null>('auth-info');
-  const supabase = createClient();
+  const supabase = createClientBrowser();
 
   const handleUnauthenticated = useCallback(() => {
     setUser(null);

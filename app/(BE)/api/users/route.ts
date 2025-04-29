@@ -1,4 +1,3 @@
-import { createClient } from '@supabase/supabase-js';
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 
@@ -13,12 +12,10 @@ const ListUserSchema = z.object({
   search: z.string().optional(),
 });
 
-async function listUsersHandler(req: NextRequest, context: { session: any }) {
-  // Parse query parameters
+async function listUsersHandler(req: NextRequest) {
   const { searchParams } = req.nextUrl;
 
   try {
-    // Validate query params
     const params = ListUserSchema.parse({
       page: searchParams.get('page'),
       limit: searchParams.get('limit'),
@@ -26,20 +23,7 @@ async function listUsersHandler(req: NextRequest, context: { session: any }) {
       search: searchParams.get('search'),
     });
 
-    // Tạo Supabase client service role
-    const supabase = createClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.SUPABASE_SERVICE_ROLE_KEY!,
-      {
-        auth: {
-          autoRefreshToken: false,
-          persistSession: false,
-        },
-      },
-    );
-
-    // Truy vấn users từ Prisma với điều kiện linh hoạt
-    const whereCondition: any = {};
+    const whereCondition: any = {};  //eslint-disable-line
 
     if (params.role) {
       whereCondition.role = params.role;
@@ -78,7 +62,7 @@ async function listUsersHandler(req: NextRequest, context: { session: any }) {
 
     // Chuẩn bị response
     return NextResponse.json({
-      users: prismaUsers.map((user) => ({
+      users: prismaUsers.map((user: any) => ({  //eslint-disable-line
         ...user,
         restaurantsCount: user._count.restaurants,
         ordersCount: user._count.orders,

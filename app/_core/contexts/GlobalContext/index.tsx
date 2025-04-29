@@ -24,7 +24,7 @@ type IProps = {
   store?: IContextStore;
 };
 
-export function GlobalContextProvider(props: IProps): JSX.Element | null {
+export function GlobalContextProvider(props: IProps): ReactNode | null {
   const { children, store: initialStore } = props;
 
   const [store, setStore] = useState({

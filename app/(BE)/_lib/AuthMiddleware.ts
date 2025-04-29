@@ -4,8 +4,8 @@ import { NextRequest, NextResponse } from 'next/server';
 type ApiHandler = (
   req: NextRequest,
   context: {
-    params?: any;
-    session: any;
+    params?: any;  //eslint-disable-line
+    session: any;  //eslint-disable-line
   },
 ) => Promise<NextResponse>;
 
@@ -24,7 +24,7 @@ export function withApiAuth(
   handler: ApiHandler,
   options: AuthWrapperOptions = {},
 ) {
-  return async (req: NextRequest, context: any) => {
+  return async (req: NextRequest, context: any) => {  //eslint-disable-line
     const authHeader = req.headers.get('authorization');
 
     if (!authHeader) {
@@ -114,16 +114,16 @@ export function withApiAuth(
   };
 }
 
-function isAdmin(session: any): boolean {
+function isAdmin(session: any): boolean {  //eslint-disable-line
   return session?.user?.user_metadata?.role === 'ADMIN';
 }
 
-function hasRole(session: any, role: string): boolean {
+function hasRole(session: any, role: string): boolean {  //eslint-disable-line
   return session?.user?.user_metadata?.role === role;
 }
-
-// Utility function for token extraction
-export function extractTokenFromHeader(req: NextRequest): string | null {
-  const authHeader = req.headers.get('authorization');
-  return authHeader ? authHeader.split(' ')[1] : null;
-}
+//
+// // Utility function for token extraction
+// export function extractTokenFromHeader(req: NextRequest): string | null {
+//   const authHeader = req.headers.get('authorization');
+//   return authHeader ? authHeader.split(' ')[1] : null;
+// }

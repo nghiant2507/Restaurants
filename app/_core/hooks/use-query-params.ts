@@ -2,7 +2,7 @@ import { useSearchParams } from 'next/navigation';
 
 export const UseQueryParams = (values?: Record<string, string>) => {
   const searchParams = useSearchParams();
-  let data: Record<string, any>;
+  let data: Record<string, any>;  //eslint-disable-line
 
   if (values) {
     data = {

@@ -1,6 +1,6 @@
 import axios, { AxiosRequestConfig } from 'axios';
 
-import { createClient } from '~/core/lib/supabase/client';
+import { createClientBrowser } from '~/core/lib/supabase/client';
 
 export type IRequestBody = Record<string, any>; //eslint-disable-line
 
@@ -15,7 +15,7 @@ export interface IResponseError {
 }
 
 axios.interceptors.request.use(async (config) => {
-  const supabase = createClient();
+  const supabase = createClientBrowser();
   const { data } = await supabase.auth.getSession();
 
   if (data.session?.access_token) {
