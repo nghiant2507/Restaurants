@@ -21,7 +21,7 @@ const signUpSchema = z.object({
     .optional(),
 });
 
-export async function SignUpUser(request: Request) {
+async function SignUpUser(request: Request) {
   try {
     const requestBody = await request.json();
     const validatedData = signUpSchema.parse(requestBody);
