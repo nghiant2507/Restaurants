@@ -24,7 +24,7 @@ export function withApiAuth(
   handler: ApiHandler,
   options: AuthWrapperOptions = {},
 ) {
-  return async (req: NextRequest, context: { params?: any }) => {
+  return async (req: NextRequest, context: any) => {
     const authHeader = req.headers.get('authorization');
 
     if (!authHeader) {

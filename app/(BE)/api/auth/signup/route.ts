@@ -21,7 +21,7 @@ const signUpSchema = z.object({
     .optional(),
 });
 
-async function SignUpUser(request: Request) {
+async function signUpUser(request: Request) {
   try {
     const requestBody = await request.json();
     const validatedData = signUpSchema.parse(requestBody);
@@ -120,7 +120,7 @@ async function SignUpUser(request: Request) {
     );
   }
 }
-export const POST = withApiAuth(SignUpUser, {
+export const POST = withApiAuth(signUpUser, {
   accessLevel: AccessLevel.ADMIN,
   requireRole: ['admin', 'superadmin'],
 });
