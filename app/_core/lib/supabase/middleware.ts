@@ -24,7 +24,7 @@ export async function updateSession(request: NextRequest) {
           cookiesToSet.forEach(({ name, value, options }) =>
             supabaseResponse.cookies.set(name, value, {
               ...options,
-              maxAge: 60 * 60 * 2, // 1 tuần
+              maxAge: 60 * 60 * 2,
             }),
           );
         },
@@ -45,13 +45,9 @@ export async function updateSession(request: NextRequest) {
     return NextResponse.redirect(url);
   }
 
-  if (
-    user &&
-    (request.nextUrl.pathname.startsWith('/auth') ||
-      request.nextUrl.pathname.startsWith('/auth/register'))
-  ) {
+  if (user && request.nextUrl.pathname.startsWith('/auth')) {
     const url = request.nextUrl.clone();
-    url.pathname = '/';
+    url.pathname = '/restaurants';
     return NextResponse.redirect(url);
   }
 

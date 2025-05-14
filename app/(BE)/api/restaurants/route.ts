@@ -4,12 +4,12 @@ import { z } from 'zod';
 import { AccessLevel, withApiAuth } from '@/be/lib/AuthMiddleware';
 import { prisma } from '@/be/lib/prisma';
 
-import { CreateRestaurantSchema, ListUserSchema } from './schema';
+import { CreateRestaurantSchema, paramSearch } from './schema';
 
 const listRestaurants = async (req: NextRequest) => {
   const { searchParams } = req.nextUrl;
   try {
-    const params = ListUserSchema.parse({
+    const params = paramSearch.parse({
       page: searchParams.get('page'),
       limit: searchParams.get('limit'),
       search: searchParams.get('search'),
@@ -26,7 +26,7 @@ const listRestaurants = async (req: NextRequest) => {
       meta: {
         page: params.page,
         limit: params.limit,
-        totalData,
+        total: totalData,
         totalPages: Math.ceil(totalData / params.limit),
       },
     });
@@ -47,31 +47,31 @@ const createRestaurant = async (
 ) => {
   try {
     const body = await req.json();
-
     const validatedData = CreateRestaurantSchema.parse(body);
-
     const ownerId = context.session.user.id;
 
-    const newRestaurant = await prisma.restaurant.create({
-      data: {
-        name: validatedData.name,
-        description: validatedData.description,
-        address: validatedData.address,
-        phone: validatedData.phone,
-        email: validatedData.email,
-        ownerId: ownerId,
-        isActive: true,
-      },
-      select: {
-        id: true,
-        name: true,
-        description: true,
-        address: true,
-        phone: true,
-        email: true,
-        isActive: true,
-        createdAt: true,
-      },
+    const newRestaurant = await prisma.$transaction(async (tx) => {
+      const restaurant = await tx.restaurant.create({
+        data: {
+          name: validatedData.name,
+          description: validatedData.description,
+          address: validatedData.address,
+          phone: validatedData.phone,
+          email: validatedData.email,
+          imageUrl: validatedData.imageUrl,
+          ownerId: ownerId,
+          isActive: true,
+        },
+      });
+      await tx.restaurantStaff.create({
+        data: {
+          userId: ownerId,
+          restaurantId: restaurant.id,
+          position: 'Owner',
+          joinedAt: new Date(),
+        },
+      });
+      return restaurant;
     });
 
     return NextResponse.json(
@@ -82,8 +82,6 @@ const createRestaurant = async (
       { status: 201 },
     );
   } catch (error) {
-    console.error('Create restaurant error:', error);
-
     if (error instanceof z.ZodError) {
       return NextResponse.json(
         {
@@ -93,7 +91,6 @@ const createRestaurant = async (
         { status: 400 },
       );
     }
-
     return NextResponse.json(
       {
         error: 'Lỗi tạo nhà hàng',
@@ -103,6 +100,7 @@ const createRestaurant = async (
     );
   }
 };
+
 export const POST = withApiAuth(createRestaurant, {
   accessLevel: AccessLevel.ADMIN,
   requireRole: ['ADMIN', 'manager'],

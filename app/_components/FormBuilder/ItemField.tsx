@@ -23,13 +23,18 @@ export interface InputPropsType {
     | 'number'
     | 'textarea'
     | 'select'
-    | 'checkbox';
+    | 'checkbox'
+    | 'custom';
   placeholder?: string;
   rules: ZodTypeAny;
   options?: {
     label: string;
     value: string;
   }[];
+  component?: React.ComponentType<{
+    value: string | undefined;
+    onChange: (value: string) => void;
+  }>;
 }
 
 export interface FieldType {
@@ -74,6 +79,10 @@ export const ItemField = ({
       return (
         <Checkbox checked={field.value} onCheckedChange={field.onChange} />
       );
+    case 'custom':
+      if (!item.component) return null;
+      const CustomComponent = item.component;
+      return <CustomComponent value={field.value} onChange={field.onChange} />;
     default:
       return (
         <Input

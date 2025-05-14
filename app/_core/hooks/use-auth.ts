@@ -107,7 +107,7 @@ export const useAuth = () => {
 
         if (data.user) {
           handleAuthenticated(data.user);
-          router.push('/');
+          router.push('/restaurants');
         }
 
         return { success: true, user: data.user };

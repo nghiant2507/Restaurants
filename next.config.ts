@@ -1,30 +1,19 @@
-import type { NextConfig } from 'next';
-
-const nextConfig: NextConfig = {
-  /* config options here */
-  webpack(config) {
-    config.module.rules.push({
-      test: /\.svg$/,
-      use: [
-        {
-          loader: '@svgr/webpack',
-          options: {
-            icon: true,
-          },
-        },
-      ],
-    });
-    return config;
+const nextConfig = {
+  images: {
+    loader: 'custom',
+    loaderFile: './app/supabase-loader.ts',
+    unoptimized: false,
+    minimumCacheTTL: 60,
   },
   experimental: {
-    turbo: {
-      rules: {
-        '*.svg': {
-          loaders: ['@svgr/webpack'],
-          as: '*.js',
-        },
-      },
-    },
+    isrMemoryCacheSize: 50,
+  },
+  onDemandEntries: {
+    maxInactiveAge: 30 * 1000,
+    pagesBufferLength: 2,
+  },
+  api: {
+    bodyParser: true,
   },
 };
 

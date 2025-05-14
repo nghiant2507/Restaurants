@@ -9,35 +9,52 @@ datasource db {
 }
 
 model User {
-  id           String        @id @unique
-  email        String        @unique
-  name         String?
-  role         UserRole      @default(STAFF)
-  createdAt    DateTime      @default(now())
-  updatedAt    DateTime      @updatedAt
-  menuItems    MenuItem[]
-  orders       Order[]
-  reservations Reservation[]
-  restaurants  Restaurant[]
+  id               String            @id @unique
+  email            String            @unique
+  name             String?
+  role             UserRole          @default(STAFF)
+  imageUrl         String?           // Thêm trường ảnh đại diện
+  createdAt        DateTime          @default(now())
+  updatedAt        DateTime          @updatedAt
+  menuItems        MenuItem[]
+  orders           Order[]
+  reservations     Reservation[]
+  ownedRestaurants Restaurant[] // Nhà hàng mà user sở hữu (là owner)
+  employments      RestaurantStaff[] // Nhà hàng mà user làm việc
 }
 
 model Restaurant {
-  id             String         @id @default(cuid())
+  id             String            @id @default(cuid())
   name           String
   description    String?
   address        String
   phone          String
   email          String?
+  imageUrl       String?           // Thêm trường ảnh nhà hàng
   ownerId        String
-  isActive       Boolean        @default(true)
-  createdAt      DateTime       @default(now())
-  updatedAt      DateTime       @updatedAt
+  isActive       Boolean           @default(true)
+  createdAt      DateTime          @default(now())
+  updatedAt      DateTime          @updatedAt
   menuCategories MenuCategory[]
   menuItems      MenuItem[]
   orders         Order[]
   reservations   Reservation[]
-  owner          User           @relation(fields: [ownerId], references: [id])
+  owner          User              @relation(fields: [ownerId], references: [id])
   tables         Table[]
+  staff          RestaurantStaff[] // Nhân viên làm việc tại nhà hàng
+}
+
+// Model mới để quản lý mối quan hệ nhiều-nhiều giữa User và Restaurant
+model RestaurantStaff {
+  id           String     @id @default(cuid())
+  userId       String
+  restaurantId String
+  position     String? // Vị trí công việc trong nhà hàng (có thể để null)
+  joinedAt     DateTime   @default(now())
+  user         User       @relation(fields: [userId], references: [id])
+  restaurant   Restaurant @relation(fields: [restaurantId], references: [id])
+
+  @@unique([userId, restaurantId])
 }
 
 model MenuCategory {

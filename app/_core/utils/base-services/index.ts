@@ -13,6 +13,15 @@ interface IQueryParameters {
   search?: string;
 }
 
+export interface IResponseWithPagination<T> {
+  data: T[];
+  meta: {
+    page: number;
+    limit: number;
+    total: number;
+    totalPages: number;
+  };
+}
 interface IBaseAction<T> {
   create: (
     body: IRequestBody,
@@ -58,7 +67,7 @@ export const createService = <T>(options: IBaseService) => {
       query?: IQueryParameters,
       options?: AxiosRequestConfig,
     ) => {
-      return apiRequest.post<T>(path, toQueryString(query), body, options);
+      return apiRequest.post<T>(path, body, toQueryString(query), options);
     },
 
     get: async (
@@ -70,7 +79,6 @@ export const createService = <T>(options: IBaseService) => {
     },
 
     find: async (query: IQueryParameters, options?: AxiosRequestConfig) => {
-      console.log(query);
       return apiRequest.get<T[]>(path, toQueryString(query), options);
     },
 

@@ -1,12 +1,12 @@
 import './globals.css';
 
 import type { Metadata } from 'next';
-import { Syne } from 'next/font/google';
+import { Plus_Jakarta_Sans } from 'next/font/google';
 
 import { LayoutTheme } from './_components';
 
-const SyneFont = Syne({
-  variable: '--font-Syne',
+const PlusJakartaSans = Plus_Jakarta_Sans({
+  variable: '--font-display',
   subsets: ['latin'],
 });
 
@@ -23,7 +23,7 @@ export default async function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${SyneFont.variable} min-h-screen overflow-hidden size-full`}
+        className={`${PlusJakartaSans.variable} min-h-screen overflow-hidden size-full`}
       >
         <LayoutTheme>{children}</LayoutTheme>
       </body>

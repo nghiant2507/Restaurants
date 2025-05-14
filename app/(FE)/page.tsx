@@ -1,5 +1,7 @@
+import { redirect } from 'next/navigation';
+
 const Home = () => {
-  return <></>;
+  return redirect('/restaurants');
 };
 
 export default Home;

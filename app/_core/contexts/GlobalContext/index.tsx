@@ -1,3 +1,5 @@
+'use client';
+
 import { createContext, ReactNode, useCallback, useState } from 'react';
 
 export interface IContextStore {

@@ -2,7 +2,6 @@ import { createClient } from '@supabase/supabase-js';
 import { NextResponse } from 'next/server';
 import { z } from 'zod'; // Validation
 
-import { AccessLevel, withApiAuth } from '@/be/lib/AuthMiddleware';
 import { prisma } from '@/be/lib/prisma';
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
@@ -21,7 +20,7 @@ const signUpSchema = z.object({
     .optional(),
 });
 
-async function signUpUser(request: Request) {
+export async function POST(request: Request) {
   try {
     const requestBody = await request.json();
     const validatedData = signUpSchema.parse(requestBody);
@@ -120,7 +119,7 @@ async function signUpUser(request: Request) {
     );
   }
 }
-export const POST = withApiAuth(signUpUser, {
-  accessLevel: AccessLevel.ADMIN,
-  requireRole: ['admin', 'superadmin'],
-});
+// export const POST = withApiAuth(signUpUser, {
+//   accessLevel: AccessLevel.ADMIN,
+//   requireRole: ['admin', 'superadmin'],
+// });

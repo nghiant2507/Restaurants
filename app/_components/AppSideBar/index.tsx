@@ -6,6 +6,7 @@ import {
   Command,
   GalleryVerticalEnd,
   LucideStore,
+  SettingsIcon,
   UserIcon,
 } from 'lucide-react';
 import * as React from 'react';
@@ -51,17 +52,17 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
     return [
       {
         title: 'Nhà Hàng',
-        url: '/restaurant',
+        url: '/restaurants',
         icon: LucideStore,
       },
       {
         title: 'Báo cáo thống kê',
         icon: ChartPieIcon,
-        url: '/report',
+        url: '/reports',
       },
       {
         title: 'Cài đặt chung',
-        icon: LucideStore,
+        icon: SettingsIcon,
         isActive: true,
         subMenuItem: [
           {

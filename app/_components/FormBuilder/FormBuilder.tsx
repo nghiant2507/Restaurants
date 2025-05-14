@@ -1,7 +1,8 @@
 'use client';
+
 import { zodResolver } from '@hookform/resolvers/zod';
 import { DynamicIcon } from 'lucide-react/dynamic';
-import { DefaultValues, useForm } from 'react-hook-form';
+import { DefaultValues, SubmitHandler, useForm } from 'react-hook-form';
 import { z, ZodTypeAny } from 'zod';
 
 import {
@@ -16,31 +17,63 @@ import { cn } from '~/lib/utils';
 
 import { FieldType, ItemField } from './ItemField';
 
-type FormBuilderProps<T extends Record<string, any>> = {  //eslint-disable-line
+// Types
+type FormValues = Record<string, any>; //eslint-disable-line
+
+type InputType = 'text' | 'textarea' | 'select' | 'checkbox' | 'custom';
+
+interface FormBuilderProps<T extends FormValues> {
   items: FieldType[];
   initialValues: DefaultValues<T>;
-  onSubmit: any; //eslint-disable-line
+  onSubmit: SubmitHandler<T>;
   children: React.ReactNode;
+  className?: string;
+}
+
+const INPUT_TYPES_WITHOUT_WRAPPER: InputType[] = [
+  'textarea',
+  'select',
+  'checkbox',
+  'custom',
+];
+
+const createFormSchema = (items: FieldType[]): z.ZodObject<any> => {
+  return z.object(
+    items.reduce(
+      (acc, item) => {
+        if (item.inputProps.rules) {
+          acc[item.inputProps.name] = item.inputProps.rules;
+        }
+        return acc;
+      },
+      {} as Record<string, ZodTypeAny>,
+    ),
+  );
 };
 
-export const FormBuilder = <T extends Record<string, any>>({  //eslint-disable-line
+const getFormItemClassName = (type: InputType): string => {
+  return cn('flex gap-3', {
+    'flex-col': type !== 'checkbox',
+    'flex-row items-start': type === 'checkbox',
+  });
+};
+
+const getFormControlClassName = (type: InputType): string => {
+  if (INPUT_TYPES_WITHOUT_WRAPPER.includes(type)) {
+    return '';
+  }
+  return 'flex h-10 items-center rounded-md border border-input bg-white text-sm ring-offset-background focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2 focus-within:shadow-md';
+};
+
+// Component
+export const FormBuilder = <T extends FormValues>({
   items,
   initialValues,
   onSubmit,
   children,
+  className,
 }: FormBuilderProps<T>) => {
-  const schema = items.reduce(
-    (acc, item) => {
-      if (item.inputProps.rules) {
-        acc[item.inputProps.name] = item.inputProps.rules;
-      }
-      return acc;
-    },
-    {} as Record<string, ZodTypeAny>,
-  );
-
-  const formSchema = z.object(schema);
-
+  const formSchema = createFormSchema(items);
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     values: { ...initialValues },
@@ -49,58 +82,47 @@ export const FormBuilder = <T extends Record<string, any>>({  //eslint-disable-l
   return (
     <Form {...form}>
       <form
-        onSubmit={form.handleSubmit(onSubmit)}
-        className="space-y-6"
+        onSubmit={form.handleSubmit(
+          onSubmit as SubmitHandler<z.infer<typeof formSchema>>,
+        )}
+        className={cn('space-y-6', className)}
         autoComplete="off"
       >
-        {items.map((item: FieldType) => {
+        {items.map((item) => {
           const { visible = false, required = false } = item;
-
           if (visible) return null;
+
+          const inputType = item.inputProps.type as InputType;
 
           return (
             <FormField
               key={item.inputProps.name}
               control={form.control}
-              defaultValue={''}
-              name={item.inputProps.name as any} //eslint-disable-line
+              name={item.inputProps.name}
               render={({ field }) => (
-                <FormItem
-                  className={cn('flex gap-3', {
-                    'flex-col': item.inputProps.type !== 'checkbox',
-                    'flex-row items-start': item.inputProps.type === 'checkbox',
-                  })}
-                >
-                  {item.inputProps.type !== 'checkbox' && (
+                <FormItem className={getFormItemClassName(inputType)}>
+                  {inputType !== 'checkbox' && (
                     <FormLabel>
                       {item.label}
                       {required && (
-                        <span className={'text-red-700 -ml-1'}>*</span>
+                        <span className="text-red-700 -ml-1">*</span>
                       )}
                     </FormLabel>
                   )}
                   <FormControl>
-                    <div
-                      className={
-                        item?.inputProps?.type !== 'textarea' &&
-                        item?.inputProps?.type !== 'select' &&
-                        item?.inputProps?.type !== 'checkbox'
-                          ? 'flex h-10 items-center rounded-md border border-input bg-white text-sm ring-offset-background focus-within:ring-1 focus-within:ring-ring focus-within:ring-offset-2 focus-within:shadow-md'
-                          : ''
-                      }
-                    >
+                    <div className={getFormControlClassName(inputType)}>
                       {item?.icon && (
                         <DynamicIcon
-                          className={'ml-3'}
+                          className="ml-3"
                           name={item.icon.name}
-                          color={'black'}
+                          color="black"
                           size={item.icon.size}
                         />
                       )}
                       <ItemField item={item.inputProps} field={field} />
                     </div>
                   </FormControl>
-                  {item.inputProps.type === 'checkbox' && (
+                  {inputType === 'checkbox' && (
                     <FormLabel>{item.label}</FormLabel>
                   )}
                   <FormMessage />

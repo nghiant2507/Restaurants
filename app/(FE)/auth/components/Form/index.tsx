@@ -5,12 +5,6 @@ import { z } from 'zod';
 
 import { FieldType, FormBuilder } from '~/components/FormBuilder';
 import { Button } from '~/core/components/ui/button';
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from '~/core/components/ui/card';
 import { useAuth } from '~/core/hooks';
 
 interface UserProps {
@@ -18,11 +12,12 @@ interface UserProps {
   password: string;
 }
 
-const FormAuth = ({ keyForm }: { keyForm: string }) => {
-  const { signIn, signUp, isSubmit } = useAuth();
+const FormAuth = () => {
+  const { signIn, isSubmit } = useAuth();
   const initialValues = useMemo(() => {
     return {
-      ...{},
+      email: '',
+      password: '',
     } as UserProps;
   }, []);
 
@@ -56,45 +51,30 @@ const FormAuth = ({ keyForm }: { keyForm: string }) => {
         },
       },
     ] as FieldType[];
-  }, [keyForm]);
-  const onSubmit = useCallback(
-    async (values: UserProps) => {
-      try {
-        keyForm === 'signin'
-          ? await signIn(values.email, values.password)
-          : await signUp(values.email, values.password);
-      } catch (e) {
-        console.log(e);
-      }
-    },
-    [keyForm],
-  );
+  }, []);
+
+  const onSubmit = useCallback(async (values: UserProps) => {
+    try {
+      await signIn(values.email, values.password);
+    } catch (e) {
+      console.log(e);
+    }
+  }, []);
 
   return (
-    <>
-      <Card className={'relative z-5 shadow-2xl bg-white'}>
-        <CardHeader>
-          <CardTitle className={'mx-auto text-2xl font-bold'}>
-            {keyForm === 'signin' ? 'Đăng nhập' : 'Đăng ký'}
-          </CardTitle>
-        </CardHeader>
-        <CardContent>
-          <FormBuilder
-            items={items}
-            onSubmit={onSubmit}
-            initialValues={initialValues}
-          >
-            <Button
-              disabled={isSubmit}
-              className={'w-full'}
-              size={'lg'}
-              type={'submit'}
-              children={keyForm === 'signin' ? 'Đăng nhập' : 'Đăng ký'}
-            />
-          </FormBuilder>
-        </CardContent>
-      </Card>
-    </>
+    <FormBuilder
+      items={items}
+      onSubmit={onSubmit}
+      initialValues={initialValues}
+    >
+      <Button
+        disabled={isSubmit}
+        className={'w-full'}
+        size={'lg'}
+        type={'submit'}
+        children={'Đăng nhập'}
+      />
+    </FormBuilder>
   );
 };
 
