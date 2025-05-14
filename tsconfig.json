@@ -23,6 +23,9 @@
       }
     ],
     "paths": {
+      "~/module/*": [
+        "./app/(FE)/*"
+      ],
       "~/components/*": [
         "./app/_components/*"
       ],

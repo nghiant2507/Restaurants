@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="be5ce88c-f9b1-4796-b046-ad905af54f78" name="Changes" comment="feat: Login Page + Cms">
+      <change afterPath="$PROJECT_DIR$/app/(FE)/restaurant/components/ListView/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/(BE)/api/auth/signup/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/(BE)/api/auth/signup/route.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/(BE)/api/restaurants/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/(BE)/api/restaurants/route.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/(BE)/api/restaurants/schema/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/(BE)/api/restaurants/schema/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/(FE)/auth/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(FE)/auth/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/(FE)/restaurant/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(FE)/restaurant/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/_components/AppSideBar/components/MainMenu/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/_components/AppSideBar/components/MainMenu/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/_components/AppSideBar/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/_components/AppSideBar/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/_components/FormBuilder/FormBuilder.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/_components/FormBuilder/FormBuilder.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/_components/Header/components/Menu/index.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/_components/Header/index.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/_components/Layout/LayoutAdmin/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/_components/Layout/LayoutAdmin/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/_components/Layout/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/_components/Layout/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/_components/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/_components/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/_core/components/ui/input.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/_core/components/ui/input.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/_core/components/ui/separator.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/_core/components/ui/separator.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/_core/components/ui/sheet.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/_core/components/ui/sheet.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/_core/components/ui/sidebar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/_core/components/ui/sidebar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/_core/components/ui/tooltip.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/_core/components/ui/tooltip.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/_core/hooks/use-mobile.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/_core/hooks/use-mobile.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/_core/lib/supabase/middleware.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/_core/lib/supabase/middleware.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/app/globals.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/prisma/schema.prisma" beforeDir="false" afterPath="$PROJECT_DIR$/prisma/schema.prisma" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.json" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
+  <component name="ProjectId" id="2uHvw0DZTIWVHsNbh63Y8whyFHp" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;E:/Project/page/app/(FE)&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.standard&quot;: &quot;&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;E:\\Project\\page\\node_modules\\prettier&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;E:\\Project\\page\\node_modules\\typescript\\lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\Project\page\app\(FE)" />
+      <recent name="E:\Project\page\app\(FE)\auth\images" />
+      <recent name="E:\Project\page\public\images" />
+      <recent name="E:\Project\page\app\_core" />
+      <recent name="E:\Project\page\app\(BE)\api\auth" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\Project\page\app\(FE)" />
+      <recent name="E:\Project\page\app\(FE)\auth\images" />
+      <recent name="E:\Project\page" />
+      <recent name="E:\Project\page\app\_core\lib\utils" />
+      <recent name="E:\Project\page\app\_components" />
+    </key>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-822845ee3bb5-JavaScript-WS-243.23654.157" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="be5ce88c-f9b1-4796-b046-ad905af54f78" name="Changes" comment="" />
+      <created>1741918549282</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1741918549282</updated>
+      <workItem from="1741918550073" duration="2928000" />
+      <workItem from="1741921952845" duration="4012000" />
+      <workItem from="1741926145032" duration="3718000" />
+      <workItem from="1741940900911" duration="4476000" />
+      <workItem from="1741947851526" duration="853000" />
+      <workItem from="1742178305441" duration="8054000" />
+      <workItem from="1742434828195" duration="11614000" />
+      <workItem from="1742521078404" duration="11372000" />
+      <workItem from="1742545029748" duration="1661000" />
+      <workItem from="1742791284432" duration="653000" />
+      <workItem from="1742970799633" duration="3549000" />
+      <workItem from="1743040772259" duration="314000" />
+      <workItem from="1743155694062" duration="72000" />
+      <workItem from="1743324513773" duration="626000" />
+      <workItem from="1743387412419" duration="880000" />
+      <workItem from="1743565818359" duration="16000" />
+      <workItem from="1744772203839" duration="9180000" />
+      <workItem from="1744859619238" duration="230000" />
+      <workItem from="1744958260855" duration="2177000" />
+      <workItem from="1744960466017" duration="659000" />
+      <workItem from="1744961136654" duration="7941000" />
+      <workItem from="1745202715565" duration="1563000" />
+      <workItem from="1745223745241" duration="1763000" />
+      <workItem from="1745225547566" duration="7269000" />
+      <workItem from="1745296485486" duration="13456000" />
+      <workItem from="1745372126466" duration="7482000" />
+      <workItem from="1745393257733" duration="12615000" />
+      <workItem from="1745462276595" duration="9154000" />
+      <workItem from="1745547119601" duration="6000" />
+      <workItem from="1745767170450" duration="4000" />
+      <workItem from="1745808170083" duration="582000" />
+      <workItem from="1745893938535" duration="9742000" />
+      <workItem from="1746409171921" duration="1514000" />
+      <workItem from="1746429265180" duration="12678000" />
+      <workItem from="1746442105864" duration="293000" />
+      <workItem from="1746498677835" duration="10099000" />
+      <workItem from="1746586796414" duration="3675000" />
+      <workItem from="1746603903316" duration="2774000" />
+      <workItem from="1747032611718" duration="596000" />
+    </task>
+    <task id="LOCAL-00001" summary="feat: Login Page + Cms">
+      <option name="closed" value="true" />
+      <created>1745902750587</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1745902750587</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="feat: Login Page + Cms" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: Login Page + Cms" />
+  </component>
+</project>
