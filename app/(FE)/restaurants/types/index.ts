@@ -1,7 +1,7 @@
 import { MenuCategoryEntity, MenuItemEntity } from '~/module/menus';
 import { OrderEntity } from '~/module/orders';
 import { TableEntity } from '~/module/tables';
-import { UserEntity } from '~/module/user';
+import { UserEntity } from '~/module/users';
 
 export enum ReservationStatus {
   PENDING = 'PENDING',

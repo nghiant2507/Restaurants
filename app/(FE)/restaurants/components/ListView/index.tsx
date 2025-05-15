@@ -5,6 +5,7 @@ import { Eye } from 'lucide-react';
 import Image from 'next/image';
 import { useMemo } from 'react';
 
+import { PageContent } from '~/components/PageContent';
 import { Button } from '~/core/components/ui/button';
 import {
   Card,
@@ -52,7 +53,7 @@ export const ListView = (props: ListViewProps<RestaurantEntity>) => {
   }
 
   return (
-    <div className={'overflow-y-auto h-[calc(100vh-56px)]'}>
+    <PageContent>
       <div
         className={
           'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 p-4 '
@@ -112,6 +113,6 @@ export const ListView = (props: ListViewProps<RestaurantEntity>) => {
           );
         })}
       </div>
-    </div>
+    </PageContent>
   );
 };

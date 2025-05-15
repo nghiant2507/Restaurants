@@ -1,6 +1,6 @@
 import { MenuItemEntity } from '~/module/menus';
 import { RestaurantEntity } from '~/module/restaurants';
-import { UserEntity } from '~/module/user';
+import { UserEntity } from '~/module/users';
 
 export enum OrderStatus {
   PENDING = 'PENDING',

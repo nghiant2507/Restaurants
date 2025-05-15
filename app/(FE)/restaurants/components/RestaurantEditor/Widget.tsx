@@ -26,7 +26,7 @@ export const Widget = () => {
 
       toast.success('Tạo nhà hàng thành công', { position: 'top-right' });
     },
-    onError: async (error: any) => {//eslint-disable-line
+    onError: async (error) => {//eslint-disable-line
       toast.error('Tạo nhà hàng thất bại', { position: 'top-right' });
     },
   });

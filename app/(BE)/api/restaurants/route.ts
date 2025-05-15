@@ -1,7 +1,8 @@
+import { User } from '@supabase/supabase-js';
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 
-import { AccessLevel, withApiAuth } from '@/be/lib/AuthMiddleware';
+import { withApiAuth } from '@/be/lib/AuthMiddleware';
 import { prisma } from '@/be/lib/prisma';
 
 import { CreateRestaurantSchema, paramSearch } from './schema';
@@ -43,7 +44,12 @@ const listRestaurants = async (req: NextRequest) => {
 
 const createRestaurant = async (
   req: NextRequest,
-  context: { session: any }, //eslint-disable-line
+  context: {
+    session: {
+      user: User;
+      access_token?: string;
+    };
+  },
 ) => {
   try {
     const body = await req.json();
@@ -101,12 +107,6 @@ const createRestaurant = async (
   }
 };
 
-export const POST = withApiAuth(createRestaurant, {
-  accessLevel: AccessLevel.ADMIN,
-  requireRole: ['ADMIN', 'manager'],
-});
+export const POST = withApiAuth(createRestaurant);
 
-export const GET = withApiAuth(listRestaurants, {
-  accessLevel: AccessLevel.ADMIN,
-  requireRole: ['ADMIN', 'manager'],
-});
+export const GET = withApiAuth(listRestaurants);

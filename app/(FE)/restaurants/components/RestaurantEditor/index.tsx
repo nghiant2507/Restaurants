@@ -12,7 +12,7 @@ export const RestaurantEditor = () => {
   return (
     <ModalComponent
       modalKey={'restaurant-editor'}
-      title={restaurantId ? 'Tạo nhà hàng' : 'Cập nhập nhà hàng'}
+      title={restaurantId ? 'Cập nhập nhà hàng' : 'Tạo nhà hàng'}
       icon={LucideStore}
     >
       <Widget />

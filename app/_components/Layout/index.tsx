@@ -23,7 +23,11 @@ export const LayoutTheme = ({ children }: { children: ReactNode }) => {
   return (
     <GlobalContextProvider store={{ isLoading: true }}>
       <QueryClientProvider client={queryClient}>
-        <ProgressProvider height="4px" color="#0a0a0a">
+        <ProgressProvider
+          height={'4px'}
+          color={'#0a0a0a'}
+          options={{ showSpinner: false }}
+        >
           <LayoutWrapper>{children}</LayoutWrapper>
         </ProgressProvider>
         <Toaster />

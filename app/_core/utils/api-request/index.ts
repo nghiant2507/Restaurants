@@ -31,7 +31,7 @@ const requestAPI = async <T>(
 ): Promise<T> => {
   try {
     const { data } = await axios<T>(uri, {
-      baseURL: `${process.env.NEXT_PUBLIC_API_URL}${process.env.NEXT_PUBLIC_API_PREFIX}`,
+      baseURL: `${process.env.NEXT_PUBLIC_SITE_URL}${process.env.NEXT_PUBLIC_API_PREFIX}`,
       ...options,
     });
 

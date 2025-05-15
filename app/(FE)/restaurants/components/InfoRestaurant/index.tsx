@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import { LucideStore } from 'lucide-react';
 import React from 'react';
 
-import { DrawerComponent } from '~/components/Drawer';
+import { ModalComponent } from '~/components/Modal';
 import { useModal } from '~/core/hooks/use-modal';
 
 import { restaurantsService } from '../../service';
@@ -16,15 +16,14 @@ export const InfoRestaurant = () => {
     queryFn: () => restaurantsService.get(restaurantId),
     enabled: !!restaurantId,
   });
-  console.log(result.data);
 
   return (
-    <DrawerComponent
+    <ModalComponent
       modalKey={'restaurant-info'}
-      title={restaurantId ? 'Tạo nhà hàng' : 'Cập nhập nhà hàng'}
+      title={result?.data?.name ?? ''}
       icon={LucideStore}
     >
       <Widget />
-    </DrawerComponent>
+    </ModalComponent>
   );
 };

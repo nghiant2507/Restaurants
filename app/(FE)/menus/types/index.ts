@@ -1,6 +1,6 @@
 import { OrderItemEntity } from '../../orders';
 import { RestaurantEntity } from '../../restaurants';
-import { UserEntity } from '../../user';
+import { UserEntity } from '../../users';
 
 export interface MenuCategoryEntity {
   id: string;
