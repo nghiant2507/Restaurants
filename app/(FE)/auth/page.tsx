@@ -9,7 +9,7 @@ import bgUrl from './images/bg.jpg';
 const Auth = () => {
   return (
     <div className={'size-full flex items-center justify-center'}>
-      <div className={'flex flex-col gap-6 w-full max-w-sm md:max-w-3xl '}>
+      <div className={'flex flex-col gap-6 w-full max-w-sm md:max-w-3xl px-4'}>
         <Card className={'overflow-hidden'}>
           <CardContent className={'grid p-0 md:grid-cols-2'}>
             <div className={'flex flex-col gap-6 p-8'}>

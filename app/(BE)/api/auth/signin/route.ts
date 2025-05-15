@@ -54,7 +54,6 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ errors: error.errors }, { status: 400 });
     }
 
-    console.error('Signin error:', error);
     return NextResponse.json(
       { error: 'Internal server error' },
       { status: 500 },

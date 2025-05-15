@@ -19,11 +19,11 @@ export const PageHeader = (props: PageHeaderProps) => {
   const { toggleSidebar, isMobile } = useSidebar();
 
   return (
-    <header className={'sticky h-14 top-0 z-50 overflow-hidden p-2 shadow-sm'}>
+    <header className={'h-14 overflow-hidden p-2 shadow-sm bg-white'}>
       <div
         className={'size-full flex justify-between items-center gap-8 mx-auto'}
       >
-        <div className={'flex items-center h-full'}>
+        <div className={'flex items-center gap-2 h-full'}>
           {isMobile ? (
             <Button size={'icon'} onClick={() => toggleSidebar()}>
               <MenuIcon />
@@ -31,7 +31,7 @@ export const PageHeader = (props: PageHeaderProps) => {
           ) : (
             <SidebarTrigger />
           )}
-          <Separator orientation="vertical" className="mr-2 h-4" />
+          <Separator orientation="vertical" className="!h-3" />
           <Label>
             {props.icon && <props.icon size={18} />}
             {title}

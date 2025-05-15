@@ -5,8 +5,7 @@ import React, { useRef, useState } from 'react';
 import { AlertDescription } from '~/core/components/ui/alert';
 import { Input } from '~/core/components/ui/input';
 import { Skeleton } from '~/core/components/ui/skeleton';
-
-import supabaseLoader from '../../../supabase-loader';
+import { getSupabaseImageUrl } from '~/core/utils';
 
 type Props = {
   value?: string;
@@ -89,8 +88,7 @@ const UpdateImage: React.FC<Props> = ({ value, onChange }) => {
           <Skeleton className="w-full h-full" />
         ) : preview ? (
           <Image
-            loader={supabaseLoader}
-            src={preview ?? ''}
+            src={getSupabaseImageUrl(preview) ?? ''}
             alt="Preview"
             width={100}
             height={100}

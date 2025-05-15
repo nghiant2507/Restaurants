@@ -37,7 +37,7 @@ const INPUT_TYPES_WITHOUT_WRAPPER: InputType[] = [
   'custom',
 ];
 
-const createFormSchema = (items: FieldType[]): z.ZodObject<any> => {
+const createFormSchema = (items: FieldType[]): z.ZodObject<any> => {//eslint-disable-line
   return z.object(
     items.reduce(
       (acc, item) => {
